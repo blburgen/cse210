@@ -33,7 +33,7 @@ class Program
             Console.WriteLine("4. Save");
             Console.WriteLine("5. Quit");
             Console.WriteLine("6. Save and Quit");
-            Console.Write("What would you like to do(1-5)? ");
+            Console.Write("What would you like to do(1-6)? ");
             menuresponse = Console.ReadLine().Trim();
             Console.WriteLine();
             if(menuresponse == "1")
@@ -91,7 +91,7 @@ class Program
             }
             else
             {
-                Console.WriteLine("That was not a valid input.  Please choose a number between 1 and 5.");
+                Console.WriteLine("That was not a valid input.  Please choose a number between 1 and 6.");
             }
             
         }
