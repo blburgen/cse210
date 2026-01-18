@@ -2,7 +2,7 @@ using System;
 
 public class Journal
 {
-    public static List<Entry> _entries = new List<Entry>{};
+    public List<Entry> _entries = new List<Entry>{};
 
     public Journal()
     {
@@ -19,7 +19,7 @@ public class Journal
     {
         foreach (Entry s in _entries)
         {
-            Console.WriteLine($"{s._date} -- {s._promptText} -- {s._entryText}");
+            s.Display();
         }
     }
 
@@ -67,6 +67,12 @@ public class Journal
         catch (IOException e)
         {
             Console.WriteLine("An error occurred: " + e.Message);
+            _entries = [];
         } 
+    }
+
+    public List<Entry> CopyList()
+    {
+        return _entries;
     }
 }
