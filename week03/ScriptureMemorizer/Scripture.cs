@@ -3,6 +3,7 @@ public class Scripture
     private Reference _reference;
     private List<Word> _words = new List<Word>();
     private List<int> _position = new List<int>();
+    public List<string> _entries = new List<string>{};
 
     public Scripture(Reference reference, string text)
     {
@@ -62,5 +63,35 @@ public class Scripture
             }
         }
         return true;
+    }
+    public List<string> LoadFromFile(string file_name)
+    {
+        Console.WriteLine("Loading file…");
+        try
+        {
+            string fileContents = File.ReadAllText(@$"{file_name}.txt");
+            _entries = [];
+
+            using (StringReader reader = new StringReader(fileContents))
+            {
+                string line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    // Process the line (e.g., print it)
+                    _entries.Add(line);
+                    List<string> temp = line.Split("~~").ToList();
+                    // Console.WriteLine(temp[2]);
+                }
+            }
+        }
+        catch (IOException e)
+        {
+            Console.WriteLine("An error occurred: " + e.Message);
+            _entries = [];
+        }
+
+        Random rnd = new Random();
+        int randomNumber = rnd.Next(_entries.Count);
+        return _entries[randomNumber].Split("~~").ToList();
     }
 }
