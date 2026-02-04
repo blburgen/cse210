@@ -3,7 +3,7 @@ public class ReflectingActivity : Activity
     private List<string> _questions;
     private List<string> _prompts;
 
-    public ReflectingActivity(string name, string description, int seconds, List<string> prompts, List<string> questions) : base (name, description, seconds)
+    public ReflectingActivity(string name, string description, List<string> prompts, List<string> questions) : base (name, description)
     {
         _prompts = prompts;
         _questions = questions;
