@@ -1,3 +1,5 @@
+// Above the requirments:
+// I added to the reflecting activity so the question would not repeat until everyone had been used.
 using System;
 
 class Program
@@ -22,11 +24,13 @@ class Program
                 breath.Run();
             }
             else if(runProgram == "2"){
-                
+                ReflectingActivity reflect = new ReflectingActivity();
+                reflect.Run();
             }
             else if(runProgram == "3")
             {
-                
+                ListingActivity list = new ListingActivity();
+                list.Run();
             }
             else if(runProgram == "4")
             {

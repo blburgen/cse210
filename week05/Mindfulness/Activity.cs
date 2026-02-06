@@ -8,10 +8,29 @@ public class Activity
     }
     public void DisplayStartingMessage()
     {
+        Console.Clear();
         Console.WriteLine($"Welcome to the {_name}.");
         Console.WriteLine();
         Console.WriteLine(_description);
-        _duration = 1;
+        _duration = 0;
+        while (_duration == 0)
+        {
+            Console.WriteLine();
+            Console.Write("How long, in seconds, would you like for your session? ");
+            try
+            {
+                _duration = int.Parse(Console.ReadLine());
+            }
+            catch (System.Exception)
+            {
+                
+                Console.WriteLine("Please enter a number");
+            }
+        }
+        Console.Clear();
+        Console.WriteLine("Get ready...");
+        ShowSpinner(5);
+        Console.WriteLine();
     }
     public void DisplayEndingMessage()
     {
@@ -20,6 +39,7 @@ public class Activity
         Console.WriteLine();
         Console.WriteLine($"You have completed another {_duration} seconds of the {_name}.");
         ShowSpinner(5);
+        Console.Clear();
     }
 
     public void ShowSpinner(int seconds)

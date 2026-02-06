@@ -8,27 +8,7 @@ public class BreathingActivity : Activity
     }
     public void Run()
     {
-        Console.Clear();
         DisplayStartingMessage();
-        _duration = 0;
-        while (_duration == 0)
-        {
-            Console.WriteLine();
-            Console.Write("How long, in seconds, would you like for your session? ");
-            try
-            {
-                _duration = int.Parse(Console.ReadLine());
-            }
-            catch (System.Exception)
-            {
-                
-                Console.WriteLine("Please enter a number");
-            }
-        }
-        Console.Clear();
-        Console.WriteLine("Get ready...");
-        ShowSpinner(5);
-        Console.WriteLine();
         int temp = _duration;
         while(temp > 0)
         {
