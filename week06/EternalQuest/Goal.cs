@@ -16,4 +16,8 @@ public abstract class Goal
         return "";
     }
     public abstract string GetStringRepresentation();
+    public string GetName()
+    {
+        return _shortName;
+    }
 }

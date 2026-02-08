@@ -4,7 +4,14 @@ public class GoalManager
     private int _score;
     public GoalManager()
     {
+        _goals = [];
         _score = 0;
+        Goal goal1 = new SimpleGoal("bob", "testing goal", "50");
+        _goals.Add(goal1);
+        goal1 = new SimpleGoal("cat", "testing goal", "100");
+        _goals.Add(goal1);
+        goal1 = new SimpleGoal("lala", "testing goal", "150");
+        _goals.Add(goal1);
     }
     public void Start()
     {
@@ -22,6 +29,37 @@ public class GoalManager
             Console.WriteLine("  6. Quit");
             Console.Write("Select a choice from the menu(1-6): ");
             userOption = Console.ReadLine();
+            if(userOption == "1")
+            {
+                
+            } 
+            else if(userOption == "2")
+            {
+                ListGoalNames();
+                Console.Write("Press Enter to Continue");
+                Console.ReadLine();
+            }
+            else if(userOption == "3")
+            {
+                
+            }
+            else if(userOption == "4")
+            {
+                
+            }
+            else if(userOption == "5")
+            {
+                
+            }
+            else if(userOption == "6")
+            {
+                continue;
+            }
+            else
+            {
+                Console.WriteLine("Not a valid option press enter to continue");
+                Console.ReadLine();
+            }
         } 
     }
     public void DisplayPlayerInfo()
@@ -31,7 +69,10 @@ public class GoalManager
     }
     public void ListGoalNames()
     {
-        
+        foreach (Goal item in _goals)
+        {
+            Console.WriteLine(item.GetName());
+        }
     }
     public void ListGoalDetails()
     {
