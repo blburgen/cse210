@@ -11,11 +11,11 @@ public class ChecklistGoal : Goal
     }
     public override void RecordEvent()
     {
-        base.RecordEvent();
+        
     }
     public override bool IsComplete()
     {
-        return base.IsComplete();
+        return _target - _amountCompleted <= 0;
     }
     public override string GetDetailsString()
     {
@@ -23,6 +23,6 @@ public class ChecklistGoal : Goal
     }
     public override string GetStringRepresentation()
     {
-        return base.GetStringRepresentation();
+        return "";
     }
 }
