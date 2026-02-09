@@ -11,7 +11,16 @@ public class ChecklistGoal : Goal
     }
     public override void RecordEvent()
     {
-        
+        _amountCompleted ++;
+        if (_target - _amountCompleted == 0)
+        {
+            int temp = int.Parse(_points) + _bonus;
+            Console.WriteLine($"Congratulations! You have earned {temp} points!");
+        }
+        else
+        {
+            Console.WriteLine($"Congratulations! You have earned {_points} points!");
+        }
     }
     public override bool IsComplete()
     {
@@ -28,5 +37,17 @@ public class ChecklistGoal : Goal
     public void SetAmountCompleted(int amountCompleted)
     {
         _amountCompleted = amountCompleted;
+    }
+    public override int GetPoints()
+    {
+        if (_target - _amountCompleted == 0)
+        {
+            return int.Parse(_points) + _bonus;
+        }
+        else
+        {
+            return int.Parse(_points);
+        }
+
     }
 }

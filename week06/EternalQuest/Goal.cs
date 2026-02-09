@@ -24,4 +24,5 @@ public abstract class Goal
     {
         return _shortName;
     }
+    public abstract int GetPoints();
 }

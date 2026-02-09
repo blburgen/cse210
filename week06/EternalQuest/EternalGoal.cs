@@ -6,7 +6,7 @@ public class EternalGoal : Goal
     }
     public override void RecordEvent()
     {
-
+        Console.WriteLine($"Congratulations! You have earned {_points} points!");
     }
     public override bool IsComplete()
     {
@@ -15,5 +15,9 @@ public class EternalGoal : Goal
     public override string GetStringRepresentation()
     {
         return $"EternalGoal$${_shortName}$${_description}$${_points}";;
+    }
+    public override int GetPoints()
+    {
+        return int.Parse(_points);
     }
 }

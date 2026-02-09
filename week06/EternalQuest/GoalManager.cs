@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 public class GoalManager
 {
     private List<Goal> _goals;
@@ -26,12 +28,10 @@ public class GoalManager
             if(userOption == "1")
             {
                 CreateGoal();
-                
             } 
             else if(userOption == "2")
             {
                 ListGoalDetails();
-                
             }
             else if(userOption == "3")
             {
@@ -43,7 +43,8 @@ public class GoalManager
             }
             else if(userOption == "5")
             {
-                
+                ListGoalNames();
+                RecordEvent();
             }
             else if(userOption == "6")
             {
@@ -63,14 +64,25 @@ public class GoalManager
     }
     public void ListGoalNames()
     {
-  
+        int goalNumber = 1;
+        Console.WriteLine("The goals are:");
+        foreach (Goal item in _goals)
+        {
+            Console.Write($"{goalNumber}. ");
+            Console.WriteLine(item.GetName());
+            goalNumber ++;
+        }
     }
     public void ListGoalDetails()
     {
         Console.Clear();
+        int goalNumber = 1;
+        Console.WriteLine("The goals are:");
         foreach (Goal item in _goals)
         {
+            Console.Write($"{goalNumber}. ");
             Console.WriteLine(item.GetDetailsString());
+            goalNumber ++;
         }
         Console.Write("Press Enter to Continue");
         Console.ReadLine();
@@ -115,7 +127,13 @@ public class GoalManager
     }
     public void RecordEvent()
     {
-        
+        Console.Write("Which goal did you accomplish(number)? ");
+        int eventDone = int.Parse(Console.ReadLine());
+        _goals[eventDone-1].RecordEvent();
+        _score += _goals[eventDone-1].GetPoints();
+        Console.WriteLine($"You now have {_score} points.");
+        Console.WriteLine("Press Enter to Continue");
+        Console.ReadLine();
     }
     public void SaveGoals()
     {
@@ -177,6 +195,7 @@ public class GoalManager
             }
 
         }
+        Console.WriteLine("File loaded press enter to continue");
         Console.ReadLine();
         
     }
