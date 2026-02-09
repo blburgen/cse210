@@ -19,10 +19,14 @@ public class ChecklistGoal : Goal
     }
     public override string GetDetailsString()
     {
-        return base.GetDetailsString();
+        return $"{base.GetDetailsString()} -- Currently completed: {_amountCompleted}/{_target}";
     }
     public override string GetStringRepresentation()
     {
-        return "";
+        return $"ChecklistGoal$${_shortName}$${_description}$${_points}$${_target}$${_bonus}$${_amountCompleted}";
+    }
+    public void SetAmountCompleted(int amountCompleted)
+    {
+        _amountCompleted = amountCompleted;
     }
 }

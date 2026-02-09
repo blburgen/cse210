@@ -1,8 +1,8 @@
 public abstract class Goal
 {
-    private string _shortName;
-    private string _description;
-    private string _points;
+    protected string _shortName;
+    protected string _description;
+    protected string _points;
     public Goal(string name, string description, string points)
     {
         _shortName = name;
@@ -13,7 +13,11 @@ public abstract class Goal
     public abstract bool IsComplete();
     public virtual string GetDetailsString()
     {
-        return "";
+        if (IsComplete())
+        {
+            return $"[X] {_shortName} ({_description})";
+        }
+        return $"[ ] {_shortName} ({_description})";
     }
     public abstract string GetStringRepresentation();
     public string GetName()
