@@ -4,10 +4,12 @@ public class GoalManager
 {
     private List<Goal> _goals;
     private int _score;
+    private int _goalsComplete;
     public GoalManager()
     {
         _goals = [];
         _score = 0;
+        _goalsComplete = 0;
     }
     public void Start()
     {
@@ -15,6 +17,7 @@ public class GoalManager
         while(userOption != "6")
         {
             Console.Clear();
+            DisplayPlayerLevel();
             DisplayPlayerInfo();
             Console.WriteLine("Menu Options:");
             Console.WriteLine("  1. Create New Goal");
@@ -64,12 +67,16 @@ public class GoalManager
     }
     public void ListGoalNames()
     {
+        Console.Clear();
         int goalNumber = 1;
-        Console.WriteLine("The goals are:");
+        Console.WriteLine("The uncompleted goals are:");
         foreach (Goal item in _goals)
         {
-            Console.Write($"{goalNumber}. ");
-            Console.WriteLine(item.GetName());
+            if(item.IsComplete() == false)
+            {
+                Console.Write($"{goalNumber}. ");
+                Console.WriteLine(item.GetName());
+            }
             goalNumber ++;
         }
     }
@@ -132,6 +139,7 @@ public class GoalManager
         _goals[eventDone-1].RecordEvent();
         _score += _goals[eventDone-1].GetPoints();
         Console.WriteLine($"You now have {_score} points.");
+        SetGoalsCompleted();
         Console.WriteLine("Press Enter to Continue");
         Console.ReadLine();
     }
@@ -195,8 +203,46 @@ public class GoalManager
             }
 
         }
+        SetGoalsCompleted();
         Console.WriteLine("File loaded press enter to continue");
         Console.ReadLine();
         
+    }
+
+    public void DisplayPlayerLevel()
+    {
+        if(_goalsComplete > 100)
+        {
+            Console.WriteLine("Your goal level is 'expert' (>100 goals completed)");
+        }
+        else if(_goalsComplete > 50)
+        {
+            Console.WriteLine("Your goal level is 'advance' (>50 goals completed)");
+        }
+        else if(_goalsComplete > 10)
+        {
+            Console.WriteLine("Your goal level is 'beginner' (>10 goals completed)");
+        }
+        else if(_goalsComplete > 2)
+        {
+            Console.WriteLine("Your goal level is 'Its a start' (>2 goals completed)");
+        }
+        else
+        {
+            Console.WriteLine("Your goal level is novice");
+        }
+
+    }
+
+    public void SetGoalsCompleted()
+    {
+        _goalsComplete = 0;
+        foreach (Goal item in _goals)
+        {
+            if (item.IsComplete())
+            {
+                _goalsComplete ++;
+            }
+        }
     }
 }
