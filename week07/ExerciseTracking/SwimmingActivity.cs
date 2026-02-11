@@ -1,11 +1,20 @@
 public class SwimmingActivity : Activity
 {
-    public SwimmingActivity()
+    private double _laps;
+    public SwimmingActivity(double time, double laps) : base(time, "Swimming")
     {
-        
+        _laps = laps;
     }
-    public override void GetSummary()
+    public override double GetDistance()
     {
-        Console.WriteLine($"{_date} Running ({_time})- Distance: {_distance}, Speed: {_speed} mph, Pace: {_pace} min per mile");
+        return _laps * 50 / 1000 * 0.62;
+    }
+    public override double GetSpeed()
+    {
+        return GetDistance() / _time * 60;
+    }
+    public override double GetPace()
+    {
+        return _time / GetDistance();   
     }
 }

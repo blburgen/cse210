@@ -1,22 +1,21 @@
 public abstract class Activity
 {
-    protected DateOnly _date;
+    private DateOnly _date;
+    private string _name;
     protected double _time;
-    protected double _distance;
-    protected double _speed;
-    protected double _pace;
-    public Activity()
-    {
+    public Activity(double time, string name = "Activity")
+    { 
+        _name = name;  
         _date = DateOnly.FromDateTime(DateTime.Now);
-        _time = 1;
-        _distance = 1;
-        _speed = _distance / _time  * 60;
-        _pace = _time / _distance;
+        _time = time;
     }
-    public DateOnly GetStartDate()
+
+    public void GetSummary()
     {
-        Console.WriteLine(_date);
-        return _date; 
+        Console.WriteLine($"{_date} {_name} ({_time} min) - Distance: {Math.Round(GetDistance(),2)} miles, Speed: {Math.Round(GetSpeed(),2)} mph, Pace: {Math.Round(GetPace(),2)} min per mile");
     }
-    public abstract void GetSummary();
+
+    public abstract double GetDistance();
+    public abstract double GetSpeed();
+    public abstract double GetPace();
 }

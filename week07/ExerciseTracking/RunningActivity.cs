@@ -1,11 +1,20 @@
 public class RunningActivity : Activity
 {
-    public RunningActivity()
+    private double _distance;
+    public RunningActivity(double time, double distance) : base(time,"Running")
     {
-        
+        _distance = distance;
     }
-    public override void GetSummary()
+    public override double GetDistance()
     {
-        Console.WriteLine($"{_date} Running ({_time} min)- Distance: {_distance} miles, Speed: {_speed} mph, Pace: {_pace} min per mile");
+        return _distance;
+    }
+    public override double GetSpeed()
+    {
+        return _distance / _time * 60;
+    }
+    public override double GetPace()
+    {
+        return _time / _distance;   
     }
 }
